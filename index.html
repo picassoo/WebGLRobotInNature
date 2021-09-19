@@ -1,24 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Multi joint model (Buffered per segment)</title>
-  </head>
 
-  <body onload="main()" onkeydown="keydown(event)" onkeyup="keyup(event)" onkeypress="keypress(event)">
-    <canvas id="webgl" width="600" height="600" >
-    Please use a browser that supports "canvas"
-  </canvas>
-    <div class="introduce">
-      <p>a and d  direction buttons</p><hr>
-      <p>w go forward button - s go back button - shift run</p><hr>
-      <p>space jump button</p>
+<head>
+  <meta charset="utf-8" />
+  <title>Multi joint model (Buffered per segment)</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body onload="main()" onkeydown="keydown(event)" onkeyup="keyup(event)" onkeypress="keypress(event)">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+
+      <canvas id="webgl" height="600px" width="600px">
+        Please use a browser that supports "canvas"
+      </canvas>
     </div>
+    <div class="col-md-6 col-sm-12">
 
-    <script src="lib/webgl-utils.js"></script>
-    <script src="lib/webgl-debug.js"></script>
-    <script src="lib/cuon-utils.js"></script>
-    <script src="lib/cuon-matrix.js"></script>
-    <script src="index.js"></script>
-  </body>
+      <div class="introduce">
+        <p>a and d direction buttons</p>
+        <hr>
+        <p>w go forward button - s go back button - shift run</p>
+        <hr>
+        <p>space jump button</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div id="wrapper">
+        <div id="controls">
+          <button id="keyboard_key_up" class="movements_control"> <span class="glyphicon glyphicon-triangle-top"></span>
+          </button>
+          <div id="keyboard_key_speed">
+            <p>Speed</p>
+          </div>
+          <button id="keyboard_key_left" class="movements_control"><span
+              class="glyphicon glyphicon-triangle-left"></button>
+          <button id="keyboard_key_down" class="movements_control"><span
+              class="glyphicon glyphicon-triangle-bottom"></button>
+          <button id="keyboard_key_right" class="movements_control"><span
+              class="glyphicon glyphicon-triangle-right"></button>
+          <label class="switch movements_space" id="keyboard_key_speed">
+            <input type="checkbox">
+            <span class="slider"></span>
+          </label>
+          <button id="keyboard_key_space" class="movements_space"><b>
+              <p>Space</p>
+            </b></button>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+
+
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/webgl-utils.js"></script>
+  <script src="lib/webgl-debug.js"></script>
+  <script src="lib/cuon-utils.js"></script>
+  <script src="lib/cuon-matrix.js"></script>
+  <script src="index.js"></script>
+  <style>
+    body {
+      margin: 10px;
+      padding: 10px;
+    }
+
+    #wrapper {
+      display: flex;
+      justify-content: left;
+    }
+
+    #controls {
+      display: inline-grid;
+      row-gap: 1px;
+      grid-column-gap: 1px;
+      align-self: end;
+    }
+
+    .movements_control {
+      margin: 0;
+      padding: 0;
+    }
+
+    .movements_control span {
+      width: inherit;
+      height: inherit;
+      align-items: center;
+    }
+
+    #keyboard_key_up {
+      grid-column-start: 2;
+    }
+
+    #keyboard_key_left {
+      grid-column-start: 1;
+    }
+
+    #keyboard_key_down {
+      grid-column-start: 2;
+    }
+
+    #keyboard_key_right {
+      grid-column-start: 3;
+    }
+
+    #keyboard_key_space {
+      grid-column-start: 5;
+    }
+
+    #keyboard_key_speed {
+      grid-column-start: 4;
+    }
+
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 40px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 32px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    @media (min-width: 721px) {
+      .movements_control {
+        width: 40px;
+        height: 40px;
+      }
+      .movements_space {
+        width: 60px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .movements_control {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  </style>
+</body>
+
 </html>

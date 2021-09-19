@@ -79,7 +79,7 @@ function main() {
   viewProjMatrix.lookAt(5, 10.0, 80.0, 5.0, 10.0, 2.0, 0.0, 1.0, 0.0);
 
     var tick = function() {
-          currentAngle = animate(currentAngle,100);
+          currentAngle = animate(currentAngle,200);
           draw(gl, n, viewProjMatrix, a_Position, u_MvpMatrix, u_NormalMatrix);
           requestAnimationFrame(tick, canvas);
     }
